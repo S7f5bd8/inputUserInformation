@@ -13,8 +13,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
-    lateinit var textName : TextView
-    lateinit var textEmail : TextView
+    lateinit var textName : EditText
+    lateinit var textEmail : EditText
     lateinit var btnDlg : Button
     lateinit var dlgEditName : EditText
     lateinit var dlgEditEmail : EditText
@@ -36,12 +36,14 @@ class MainActivity : AppCompatActivity() {
             var dialog = AlertDialog.Builder(this@MainActivity)
             dialog.setTitle("사용자 정보 입력")
             dialog.setIcon(R.drawable.icon1)
+            dlgEditName = dlgView.findViewById(R.id.editName)
+            dlgEditEmail = dlgView.findViewById(R.id.editEmail)
+            dlgEditName.text = textName.text
+            dlgEditEmail.text = textEmail.text
             dialog.setView(dlgView)
             dialog.setPositiveButton("확인"){dialogL, which ->
-                dlgEditName = dlgView.findViewById(R.id.editName)
-                dlgEditEmail = dlgView.findViewById(R.id.editEmail)
-                textName.text = dlgEditName.text.toString()
-                textEmail.text = dlgEditEmail.text.toString()
+                textName.text = dlgEditName.text
+                textEmail.text = dlgEditEmail.text
             }
             dialog.setNegativeButton("취소"){ dialogL, which ->
                 toastView = View.inflate(this@MainActivity, R.layout.toast, null)
